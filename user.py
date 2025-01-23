@@ -3,7 +3,7 @@ import random
 bankrupt=False
 loan_activation=True
 users=[]
-loans=[]
+loans=[]          
 class User(ABC):
     acount_count=202500
     def __init__(self,name,email,address,account_type):
@@ -30,49 +30,47 @@ class User(ABC):
             else:
                  self.current_balance-=amount
                  self.transactions.append(f'Withdrawn: {amount}')
-                 print(f"{amount} Withdrawn Successfully!")
-                 print(f'Current Balance is: {self.current_balance}')
+                 print(f"\t\t\t{amount} Withdrawn Successfully!")
+                 print(f'\t\t\tCurrent Balance is: {self.current_balance}')
         else:
-            print(f'The Bank is Bankrupt!')
+            print(f'\t\t\tThe Bank is Bankrupt!')
 
     def get_balance(self):
-        print(f'Current Balance: {self.current_balance}')
+        print(f'\t\t\tCurrent Balance: {self.current_balance}')
     
     def transaction_history(self):
-        print(f'Transaction History of {self.account_no} account number:')
+        print(f'\t\t\tTransaction History of {self.account_no} account number:')
         for transaction in self.transactions:
-            print(transaction)
+            print(f'\t\t\t{transaction}')
     def request_loan(self,amount):
         if loan_activation==True:
              if self.loan_count>=2:
-                 print(f'Loan Limit Exceeded!')
+                 print(f'\t\t\tLoan Limit Exceeded!')
              else:
                  self.current_balance+=amount
                  self.loan_count+=1
                  self.transactions.append(f'Loan token: {amount}')
-                 print(f'Loan amount {amount} accepted!')
+                 print(f'\t\t\tLoan amount {amount} accepted!')
                  loans.append((self.account_no,amount))
-                 print(f'Current Balance: {self.current_balance}')
+                 print(f'\t\t\tCurrent Balance: {self.current_balance}')
         else:
-            print(f'Loan sanction is currently off.Please Try again later!')
+            print(f'\t\t\tLoan sanction is currently off.Please Try again later!')
     
     def money_transfer(self,recipient_acc_no,amount):
         if bankrupt==False:
             if amount>self.current_balance:
-                print(f'Insufficient balance!')
+                print(f'\t\t\tInsufficient balance!')
             else:
                 for user in users:
-                    print(user.account_no)
                     if recipient_acc_no==user.account_no:
                           user.current_balance+=amount
                           self.current_balance-=amount
                           self.transactions.append(f'Money Transfer: {amount}')
                           user.transactions.append(f'Money Received: {amount}')
-                          print(f'Transaction amount:{amount}.Transaction Successful!')
-                          print(f'Current Balance: {self.current_balance}')
+                          print(f'\t\t\tTransaction amount:{amount}.Transaction Successful!')
+                          print(f'\t\t\tCurrent Balance: {self.current_balance}')
                           return
-                print(f'Recipient does not exist!')
-
+                print(f'\t\t\tRecipient does not exist!')
 
 
 class Admin:
@@ -122,36 +120,3 @@ class Admin:
     def get_loan_activation(self):
         return loan_activation
 
-
-
-
-# admin = Admin()
-# customer1 = admin.add_user("Alice Smith", "alice@example.com", "123 Elm Street", "Savings")
-# customer2 = admin.add_user("Bob Johnson", "bob@example.com", "456 Maple Avenue", "Current")
-
-# customer1.deposit_money(1000)
-# admin.set_bankrupt()
-# customer1.withdraw_money(500)
-# customer1.transaction_history()
-
-# # print(admin.get_bankrupt())
-# customer1.money_transfer(202501, 200)
-# customer1.transaction_history()
-# customer2.transaction_history()
-# # customer2.get_balance()
-# # admin.set_loan_activation()
-# customer1.request_loan(5000)
-# customer1.request_loan(5000)
-# customer1.request_loan(5000)
-# customer2.request_loan(5000)
-
-# admin.view_user_list()
-# admin.total_available_balance()
-# admin.total_loan_amount()
-
-
-# # admin.remove_user(202501)
-# # admin.view_user_list()
-# # admin.list_all_users()
-# # admin.calculate_total_balance()
-# # admin.toggle_loan_availability()
