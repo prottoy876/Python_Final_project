@@ -1,5 +1,6 @@
-from user import *
+from allClass import *
 import os
+
 def user_selection(customer):
     while True:
          print(f'\t\t\t\t  User Selection Tab')
@@ -53,8 +54,8 @@ def user_selection(customer):
 
 def user_interface():
     while True:
-         print(f'\t\t\t\t   User Interface')
-         print(f'\t\t\t\t======================')
+         print(f'\t\t\t\t\t      User Interface')
+         print(f'\t\t\t\t\t   ====================')
          print(f'\t\t\t  For Creating Account Choose_________________________1')
          print(f'\t\t\t  If You already have an account choose_______________2')
          print(f'\t\t\t  For Exit Choose_____________________________________3')
@@ -80,23 +81,62 @@ def user_interface():
                      flag=True
               if flag==False:
                  print(f'\t\t\tAccount does not exist!')
+                 char=input("\t\t\tPress Enter.....")
               os.system('cls')
                 
          elif ch==3:
              return
-        
 
-                   
-         
-                     
-             
-             
-             
-             
+
+def admin_interface():
+    while True:
+         print(f'\t\t\t\t  Admin Selection Tab')
+         print(f'\t\t\t\t======================')
+         print(f'\t\t\t  For Remove User Choose________________________1')
+         print(f'\t\t\t  For View User List Choose_____________________2')
+         print(f'\t\t\t  For Checking Total Balance Choose_____________3')
+         print(f'\t\t\t  For Checking Total Loan Amount Choose_________4')
+         print(f'\t\t\t  For Setting Bankrupt Condition________________5')
+         print(f'\t\t\t  For Setting Loan Activation___________________6')
+         print(f'\t\t\t  For Exit Choose_______________________________7')
+         ch=int(input("\t\t\t  Enter Your Choice:"))
+         if ch==1:
+            os.system('cls')
+            acc_no=int(input("\t\t\tEnter account number:"))
+            admin.remove_user(acc_no)
+            char=input("\t\t\tPress Enter.....")
+            os.system('cls')
+         elif ch==2:
+             os.system('cls')
+             admin.view_user_list()
+             char=input("\t\t\tPress Enter.....")
+             os.system('cls')
+         elif ch==3:
+             os.system('cls')
+             admin.total_available_balance()
+             char=input("\t\t\tPress Enter.....")
+             os.system('cls')
+         elif ch==4:
+             os.system('cls')
+             admin.total_loan_amount()
+             char=input("\t\t\tPress Enter.....")
+             os.system('cls')
+         elif ch==5:
+             os.system('cls')
+             admin.set_bankrupt()
+             char=input("\t\t\tPress Enter.....")
+             os.system('cls')
+         elif ch==6:
+              os.system('cls')
+              admin.set_loan_activation()
+              char=input("\t\t\tPress Enter.....")
+              os.system('cls')
+         elif ch==7:
+             return
+
 
 
 admin=Admin()
-# bank=Bank()
 while True:
     print(f'\t\t\t\tBank Management System')
     print(f'\t\t\t\t======================')
@@ -108,6 +148,12 @@ while True:
         os.system('cls')
         user_interface()
         os.system('cls')
+    elif choice==2:
+        os.system('cls')
+        admin_interface()
+        os.system('cls')
+    elif choice==3:
+        break
 
     
 
